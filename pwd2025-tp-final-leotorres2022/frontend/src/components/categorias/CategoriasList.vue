@@ -97,7 +97,7 @@ td i:hover {
 .pi-pencil
 {
   cursor: pointer;
-  color: #e5f41b;
+  color: #c4d11a;
 }
 .volver{
   display: flex;
