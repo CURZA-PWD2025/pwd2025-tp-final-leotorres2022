@@ -1,4 +1,4 @@
-export interface Talles{
-  id?: number;
-  nombre: string;
+export interface Talles {
+  id?: number
+  nombre: string
 }

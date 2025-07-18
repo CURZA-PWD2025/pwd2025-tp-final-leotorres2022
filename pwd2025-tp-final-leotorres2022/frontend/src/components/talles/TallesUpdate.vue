@@ -2,43 +2,43 @@
   <div>
     <form @submit.prevent="editar">
       <div class="detalle-talle">
-    <label>Nombre</label>
-    <input type="text" v-model="talle.nombre" class="dato">
-     </div>
+        <label>Nombre</label>
+        <input type="text" v-model="talle.nombre" class="dato" />
+      </div>
       <button type="submit" class="modificar">Modificar</button>
     </form>
-
   </div>
-  <div class="volver" >
-    <router-link :to="{name:'talles_list'}"><i class="pi pi-arrow-circle-left" style="font-size: 2rem"></i></router-link>
+  <div class="volver">
+    <router-link :to="{ name: 'talles_list' }"
+      ><i class="pi pi-arrow-circle-left" style="font-size: 2rem"></i
+    ></router-link>
   </div>
 </template>
 <script setup lang="ts">
-import { toRefs } from 'vue';
-import  UseTallesStore from '../../stores/talles'
-import { useRoute} from 'vue-router';
-import { onMounted } from 'vue';
+import { toRefs } from 'vue'
+import UseTallesStore from '../../stores/talles'
+import { useRoute } from 'vue-router'
+import { onMounted } from 'vue'
 const route = useRoute()
-const { talle: talle,talles: talles} = toRefs(UseTallesStore())
-const {update} = UseTallesStore()
+const { talle: talle, talles: talles } = toRefs(UseTallesStore())
+const { update } = UseTallesStore()
 onMounted(async () => {
   const id = route.params.id
   console.log('ID del talle a editar:', id)
-const encontrada= talles.value.find(talle => talle.id == parseInt(id as string));
-talle.value =  encontrada ?? { nombre: '' }
+  const encontrada = talles.value.find((talle) => talle.id == parseInt(id as string))
+  talle.value = encontrada ?? { nombre: '' }
 })
 
 const editar = async () => {
   if (!talle.value.nombre) {
-    alert('El nombre del talle es obligatorio');
+    alert('El nombre del talle es obligatorio')
   } else {
-    const response = await update(talle.value);
-    alert('Talle actualizada correctamente');
-    talle.value.nombre= ''
-    console.log(response);
+    const response = await update(talle.value)
+    alert('Talle actualizada correctamente')
+    talle.value.nombre = ''
+    console.log(response)
   }
-};
-
+}
 </script>
 
 <style scoped>
@@ -48,7 +48,7 @@ const editar = async () => {
   padding: 2rem;
   background-color: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   color: #333;
   font-family: 'Segoe UI', sans-serif;
   font-size: 1.3rem;
@@ -69,7 +69,7 @@ const editar = async () => {
 
 .dato {
   margin-left: 8px;
-  color: #007BFF;
+  color: #007bff;
   font-weight: bold;
   font-size: 1.3rem;
 }
@@ -77,7 +77,7 @@ const editar = async () => {
   display: block;
   width: 10%;
   padding: 0.6rem;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 4px;
@@ -86,11 +86,10 @@ const editar = async () => {
   margin: 1rem auto;
   text-align: center;
 }
-.volver{
+.volver {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 20vh; 
+  height: 20vh;
 }
-
 </style>

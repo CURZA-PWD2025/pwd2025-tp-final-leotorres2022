@@ -1,18 +1,18 @@
 <template>
   <div class="app-container">
     <nav class="navbar">
-      <ul >
+      <ul>
         <li><router-link to="/">HOME</router-link></li>
-        <li><router-link :to="{name:'club'}">CLUB</router-link></li>
-        <li><router-link :to="{name:'tienda'}">TIENDA</router-link></li>
-        <li><router-link :to="{name:'galeria'}">GALERIA</router-link></li>
-        <li><router-link :to="{name:'socios_list'}">SOCIOS</router-link></li>
+        <li><router-link :to="{ name: 'club' }">CLUB</router-link></li>
+        <li><router-link :to="{ name: 'tienda' }">TIENDA</router-link></li>
+        <li><router-link :to="{ name: 'galeria' }">GALERIA</router-link></li>
+        <li><router-link :to="{ name: 'socios_list' }">SOCIOS</router-link></li>
       </ul>
     </nav>
 
     <div v-if="$route.path === '/'">
-    <h1>¿Todavia no sos socio?</h1>
-    <button><router-link :to="{name:'socios_create'}">ASOCIATE </router-link></button>
+      <h1>¿Todavia no sos socio?</h1>
+      <button><router-link :to="{ name: 'socios_create' }">ASOCIATE </router-link></button>
     </div>
 
     <main class="main-content">
@@ -23,29 +23,65 @@
       </div>
       <RouterView />
     </main>
-<footer class="footer">
-  <ul>
-    <li><a href="https://www.facebook.com/formando.futuro.ceff" target="_blank"><i class="pi pi-facebook" style="font-size: 2.5rem"></i></a></li>
-    <li><a href="https://www.instagram.com/formando.futuro.oficial?igsh=NWE2dHh3eWI0b3Jp" target="_blank"><i class="pi pi-instagram" style="font-size: 2.5rem"></i></a></li>
-    <li><a href="https://twitter.com" target="_blank"><i class="pi pi-whatsapp" style="font-size: 2.5rem"></i></a></li>
-    <li><a href="https://youtube.com" target="_blank"><i class="pi pi-map-marker" style="font-size: 2.5rem"></i></a></li>
-  </ul>
+    <footer class="footer">
+      <section class="info-empresa">
+        <h1>Direccion</h1>
+        <p>direccion ficticia</p>
+        <p>02920 15547412</p>
 
-</footer>
+      </section>
+      <section class="nav_footer">
+  <ul >
+        <li><router-link to="/">HOME</router-link></li>
+        <li><router-link :to="{ name: 'club' }">CLUB</router-link></li>
+        <li><router-link :to="{ name: 'tienda' }">TIENDA</router-link></li>
+        <li><router-link :to="{ name: 'galeria' }">GALERIA</router-link></li>
+        <li><router-link :to="{ name: 'socios_list' }">SOCIOS</router-link></li>
+      </ul>
+</section>
+      <section class="redes-sociales">
+        <ul class="redes-sociales">
+        <li>
+          <i class="pi pi-facebook" style="font-size: 1.2rem"></i
+            >
+          <a href="https://www.facebook.com/formando.futuro.ceff" target="_blank"
+            >formando futuro</a>
+        </li>
+        <li>
+          <i class="pi pi-instagram" style="font-size: 1.2rem"></i
+            >
+          <a
+            href="https://www.instagram.com/formando.futuro.oficial?igsh=NWE2dHh3eWI0b3Jp"
+            target="_blank"
+            >formando futuro oficial</a>
+        </li>
+        <li>
+          <i class="pi pi-whatsapp" style="font-size: 1.2rem"></i
+            >
+          <a href="https://twitter.com" target="_blank"
+            >manda tus consultas y comentarios</a>
+        </li>
+        <li>
+          <i class="pi pi-map-marker" style="font-size: 1.2rem"></i
+            >
+          <a href="https://youtube.com" target="_blank"
+            >mira los partidos y eventos </a>
+        </li>
+      </ul>
+      </section>
+
+    </footer>
   </div>
-  </template>
+</template>
 
 <script setup lang="ts">
 import 'primeicons/primeicons.css'
-
-
 </script>
 
 <style scoped>
 .app-container {
   display: flex;
   flex-direction: column;
-  width: 100vw; /* Asegura el ancho completo */
   min-height: 100vh;
 }
 .navbar {
@@ -76,15 +112,16 @@ import 'primeicons/primeicons.css'
   text-decoration: none;
   color: white;
   font-weight: bold;
-  transition: background-color 0.3s ease, letter-spacing 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    letter-spacing 0.3s ease;
 }
 
 .navbar a:hover {
   background-color: #1aae4d; /* Verde más claro en hover */
-  letter-spacing: 0.5px;     /* Separación suave de letras */
+  letter-spacing: 0.5px; /* Separación suave de letras */
   text-decoration: underline;
 }
-
 
 .main-content {
   flex: 1;
@@ -119,7 +156,7 @@ import 'primeicons/primeicons.css'
 }
 h1 {
   text-align: center;
-  font-family: "Arial Rounded MT Bold", "Arial Rounded", Arial, sans-serif;
+  font-family: 'Arial Rounded MT Bold', 'Arial Rounded', Arial, sans-serif;
 }
 button {
   display: block;
@@ -129,7 +166,7 @@ button {
   color: #fff;
   border: none;
   border-radius: 8px;
-  font-family: "Arial Rounded MT Bold", "Arial Rounded", Arial, sans-serif;
+  font-family: 'Arial Rounded MT Bold', 'Arial Rounded', Arial, sans-serif;
   cursor: pointer;
   font-weight: bold;
   transition: background 0.2s;
@@ -139,44 +176,61 @@ button:hover {
   background: #447453;
 }
 .footer {
+  border-top: #16519d solid 12px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  align-items: center;
   background: #169d3e;
-  padding: 0 40px;
+  padding: 2rem;
   width: 100%;
+  height: 200px;
   box-sizing: border-box;
-  position: relative;
   bottom: 0;
 }
 
+
 .footer ul {
   display: flex;
+  flex-direction: column;
   list-style: none;
-  margin: 0;
-  padding: 0;
-  height: 60px;
-  align-items: center;
-  justify-content: space-between;
+  gap: 0.25rem;
+
 }
 
-.footer li {
-  flex: 1;
-  text-align: center;
+.redes-sociales li {
+  color: #fff;
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  justify-content: center;
+  align-items: center;
+}
+.info-empresa{
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  color: #fff;
+  h1{
+    border-bottom: 1px solid white;
+
+  }
 }
 
 .footer a {
   color: #fff;
   text-decoration: none;
-  font-weight: bold;
-  font-size: 18px;
+  font-size: 12px;
 }
 
-.footer a:hover {
-  text-decoration: underline;
-}
+.nav_footer  ul li {
+  padding: 0 0.25rem;
+  }
+.nav_footer li:hover{
+    width: 100%;
+    background-color: #166b30;
+  }
 
-.navbar ul,
-.footer ul {
-  height: 44px; /* Más bajo */
-}
+
 
 .navbar a,
 .footer a {
@@ -186,7 +240,7 @@ button:hover {
 
 .navbar,
 .footer {
-  padding: 0 20px; 
+  padding: 0 20px;
 }
 
 @media (max-width: 700px) {

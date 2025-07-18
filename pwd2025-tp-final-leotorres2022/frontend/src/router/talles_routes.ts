@@ -24,9 +24,8 @@ const talles_routes = [
         name: 'talles_show',
         component: () => import('../components/talles/TallesShow.vue'),
       },
-
-    ]
-  }
+    ],
+  },
 ]
 
 export default talles_routes

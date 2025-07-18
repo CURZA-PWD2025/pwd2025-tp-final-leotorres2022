@@ -24,9 +24,8 @@ const categorias_routes = [
         name: 'categorias_show',
         component: () => import('../components/categorias/CategoriasShow.vue'),
       },
-
-    ]
-  }
+    ],
+  },
 ]
 
 export default categorias_routes

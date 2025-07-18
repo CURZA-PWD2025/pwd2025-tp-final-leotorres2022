@@ -1,10 +1,12 @@
 <template>
   <h1 class="titulo">Lista de Talles</h1>
   <div class="crear-container">
-  <router-link :to="{name:'talles_create'}">CREAR</router-link>
-   </div>
-   <div class="volver" >
-          <router-link :to="{name:'configuraciones'}"><i class="pi pi-arrow-circle-left" style="font-size: 2rem"></i></router-link>
+    <router-link :to="{ name: 'talles_create' }">CREAR</router-link>
+  </div>
+  <div class="volver">
+    <router-link :to="{ name: 'configuraciones' }"
+      ><i class="pi pi-arrow-circle-left" style="font-size: 2rem"></i
+    ></router-link>
   </div>
   <table>
     <thead>
@@ -19,10 +21,16 @@
         <td>{{ talle.id }}</td>
         <td>{{ talle.nombre }}</td>
         <td>
-          <router-link :to="{name:'talles_update',params:{id:talle.id}}"><i class="pi pi-pencil" style="font-size: 1.5rem" ></i></router-link>
-          <router-link :to="{name:'talles_show',params:{id:talle.id}}"><i class="pi pi-eye" style="font-size: 1.5rem"></i></router-link>
-          <button @click.prevent="eliminar(talle.id as number)"><i class="pi pi-trash" style="font-size: 1.5rem"></i></button>
-                  </td>
+          <router-link :to="{ name: 'talles_update', params: { id: talle.id } }"
+            ><i class="pi pi-pencil" style="font-size: 1.5rem"></i
+          ></router-link>
+          <router-link :to="{ name: 'talles_show', params: { id: talle.id } }"
+            ><i class="pi pi-eye" style="font-size: 1.5rem"></i
+          ></router-link>
+          <button @click.prevent="eliminar(talle.id as number)">
+            <i class="pi pi-trash" style="font-size: 1.5rem"></i>
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -45,7 +53,6 @@ async function eliminar(id: number) {
 }
 </script>
 
-
 <style scoped>
 .titulo {
   text-align: center;
@@ -63,11 +70,11 @@ table {
   font-family: 'Segoe UI', sans-serif;
   font-size: 1.3rem;
   background-color: #fff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 thead th {
-  background-color: #007BFF;
+  background-color: #007bff;
   color: white;
   padding: 1rem;
   text-align: left;
@@ -91,15 +98,14 @@ td i {
 }
 
 td i:hover {
-  color: #007BFF;
+  color: #007bff;
 }
 
-.pi-pencil
-{
+.pi-pencil {
   cursor: pointer;
   color: #e5f41b;
 }
-.volver{
+.volver {
   display: flex;
   justify-content: center;
   align-items: center;

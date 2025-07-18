@@ -24,8 +24,7 @@ const socios_routes = [
         name: 'socios_show',
         component: () => import('../components/socios/SociosShow.vue'),
       },
-
-    ]
-  }
+    ],
+  },
 ]
 export default socios_routes

@@ -16,14 +16,13 @@ const router = createRouter({
       name: 'home',
       component: HomeView,
     },
-  ...tienda_routes,
-  ...categorias_routes,
-  ...socios_routes,
-  ...galeria_routes,
-  ...talles_routes,
+    ...tienda_routes,
+    ...categorias_routes,
+    ...socios_routes,
+    ...galeria_routes,
+    ...talles_routes,
     { path: '/configuraciones', name: 'configuraciones', component: ConfiguracionesView },
-    { path: '/club', name: 'club', component: ClubView }
-
+    { path: '/club', name: 'club', component: ClubView },
   ],
 })
 

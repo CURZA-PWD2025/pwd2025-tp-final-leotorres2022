@@ -1,10 +1,6 @@
-<template>
+<template></template>
 
-</template>
-
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 <style scoped>
 .home-container {
   display: flex;

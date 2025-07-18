@@ -1,8 +1,6 @@
 <template>
-    <h1 class="titulo">Socios Activos</h1>
-  <div class="crear-container">
-
-</div>
+  <h1 class="titulo">Socios Activos</h1>
+  <div class="crear-container"></div>
   <table>
     <thead>
       <tr>
@@ -22,9 +20,15 @@
         <td>{{ socio.telefono }}</td>
         <td>{{ socio.email }}</td>
         <td>
-          <router-link :to="{name:'socios_update',params:{id:socio.id}}"><i class="pi pi-pencil" style="font-size: 1.5rem" ></i></router-link>
-          <router-link :to="{name:'socios_show',params:{id:socio.id}}"><i class="pi pi-eye" style="font-size: 1.5rem"></i></router-link>
-          <button @click.prevent="eliminar(socio.id as number)"><i class="pi pi-trash" style="font-size: 1.5rem"></i></button>
+          <router-link :to="{ name: 'socios_update', params: { id: socio.id } }"
+            ><i class="pi pi-pencil" style="font-size: 1.5rem"></i
+          ></router-link>
+          <router-link :to="{ name: 'socios_show', params: { id: socio.id } }"
+            ><i class="pi pi-eye" style="font-size: 1.5rem"></i
+          ></router-link>
+          <button @click.prevent="eliminar(socio.id as number)">
+            <i class="pi pi-trash" style="font-size: 1.5rem"></i>
+          </button>
         </td>
       </tr>
     </tbody>
@@ -65,11 +69,11 @@ table {
   font-family: 'Segoe UI', sans-serif;
   font-size: 1.3rem;
   background-color: #fff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 thead th {
-  background-color: #007BFF;
+  background-color: #007bff;
   color: white;
   padding: 1rem;
   text-align: left;
@@ -93,11 +97,10 @@ td i {
 }
 
 td i:hover {
-  color: #007BFF;
+  color: #007bff;
 }
 
-.pi-pencil
-{
+.pi-pencil {
   cursor: pointer;
   color: #e5f41b;
 }

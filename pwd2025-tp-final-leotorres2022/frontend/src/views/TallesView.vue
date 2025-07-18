@@ -1,20 +1,16 @@
 <template>
-
-<RouterView />
+  <RouterView />
 </template>
 
 <script setup lang="ts">
-import { useRouter } from 'vue-router';
-import { onMounted } from 'vue';
+import { useRouter } from 'vue-router'
+import { onMounted } from 'vue'
 
-const route = useRouter();
+const route = useRouter()
 
 onMounted(() => {
-  route.push({ name: 'talles_list' });
-});
-
+  route.push({ name: 'talles_list' })
+})
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

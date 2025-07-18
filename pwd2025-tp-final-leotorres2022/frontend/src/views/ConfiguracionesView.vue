@@ -1,31 +1,25 @@
 <template>
   <div class="layout">
     <nav class="sidebar">
-         <ul>
-
-        <li><router-link :to="{name:'categorias_list'}">Categorias</router-link></li>
-        <li><router-link :to="{name:'talles_list'}">Talles</router-link></li>
-
+      <ul>
+        <li><router-link :to="{ name: 'categorias_list' }">Categorias</router-link></li>
+        <li><router-link :to="{ name: 'talles_list' }">Talles</router-link></li>
       </ul>
     </nav>
     <main class="content">
-     <RouterView />
-     <h1>En el menu lateral Podras configurar las categorias y Talles</h1>
-
+      <RouterView />
+      <h1>En el menu lateral Podras configurar las categorias y Talles</h1>
     </main>
   </div>
 </template>
 
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <style scoped>
 .layout {
   display: flex;
   flex-direction: row;
   background: #fff;
-
 }
 h1 {
   text-align: center;
@@ -37,7 +31,6 @@ h1 {
   position: fixed;
   top: 0;
   left: 0;
-  width: 120px;
   height: 100%;
   background: #f5f5f5;
   border-right: 1px solid #ddd;
@@ -59,23 +52,30 @@ h1 {
   list-style: none;
   padding: 0;
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
 }
 .sidebar li {
   margin: 20px 0;
   opacity: 0;
   transform: translateX(-50px);
-  animation: slideInLink 0.7s cubic-bezier(.77,0,.18,1) forwards;
+  animation: slideInLink 0.7s cubic-bezier(0.77, 0, 0.18, 1) forwards;
   font-size: 1.2rem;
 }
 
-.sidebar li:nth-child(1) { animation-delay: 0.5s; }
-.sidebar li:nth-child(2) { animation-delay: 1s; }
-.sidebar li:nth-child(3) { animation-delay: 1.5s; }
-.sidebar li:nth-child(4) { animation-delay: 2s; }
-.sidebar li:nth-child(5) { animation-delay: 2.5s; }
+.sidebar li:nth-child(1) {
+  animation-delay: 0.5s;
+}
+.sidebar li:nth-child(2) {
+  animation-delay: 1s;
+}
+.sidebar li:nth-child(3) {
+  animation-delay: 1.5s;
+}
+.sidebar li:nth-child(4) {
+  animation-delay: 2s;
+}
+.sidebar li:nth-child(5) {
+  animation-delay: 2.5s;
+}
 
 @keyframes slideInLink {
   to {
@@ -88,7 +88,10 @@ h1 {
   text-decoration: none;
   color: #333;
   font-weight: 600;
-  transition: color 0.2s, background 0.2s, padding 0.2s;
+  transition:
+    color 0.2s,
+    background 0.2s,
+    padding 0.2s;
   border-radius: 6px;
   display: block;
   margin-top: 5rem;
@@ -109,5 +112,4 @@ h1 {
   flex: 1;
   padding: 2rem;
 }
-
 </style>
