@@ -80,6 +80,7 @@ import 'primeicons/primeicons.css'
 
 <style scoped>
 .app-container {
+  width: 100%;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -124,6 +125,7 @@ import 'primeicons/primeicons.css'
 }
 
 .main-content {
+  width: 100%;
   flex: 1;
   padding: 40px;
 }
