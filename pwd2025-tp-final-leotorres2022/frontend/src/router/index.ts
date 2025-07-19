@@ -7,6 +7,8 @@ import ClubView from '@/views/ClubView.vue'
 import socios_routes from './socios_routes'
 import galeria_routes from './galeria_routes'
 import talles_routes from './talles_routes'
+import compras_routes from './compras_routes'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,10 +23,11 @@ const router = createRouter({
   ...socios_routes,
   ...galeria_routes,
   ...talles_routes,
-    { path: '/configuraciones', name: 'configuraciones', component: ConfiguracionesView },
-    { path: '/club', name: 'club', component: ClubView }
+  ...compras_routes,
 
-  ],
+    { path: '/configuraciones', name: 'configuraciones', component: ConfiguracionesView },
+    { path: '/club', name: 'club', component: ClubView },
+     ],
 })
 
 export default router

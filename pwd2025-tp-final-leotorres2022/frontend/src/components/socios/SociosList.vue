@@ -11,7 +11,7 @@
         <th>direccion</th>
         <th>telefono</th>
         <th>email</th>
-        <th>acciones</th>
+        <th v-if="userStore.modo === 'admin'">acciones</th>
       </tr>
     </thead>
     <tbody>
@@ -21,10 +21,13 @@
         <td>{{ socio.direccion }}</td>
         <td>{{ socio.telefono }}</td>
         <td>{{ socio.email }}</td>
-        <td>
-          <router-link :to="{name:'socios_update',params:{id:socio.id}}"><i class="pi pi-pencil" style="font-size: 1.5rem" ></i></router-link>
-          <router-link :to="{name:'socios_show',params:{id:socio.id}}"><i class="pi pi-eye" style="font-size: 1.5rem"></i></router-link>
-          <button @click.prevent="eliminar(socio.id as number)"><i class="pi pi-trash" style="font-size: 1.5rem"></i></button>
+        <td v-if="userStore.modo === 'admin'">
+          <router-link :to="{name:'socios_update',params:{id:socio.id}}">
+            <i class="pi pi-pencil" style="font-size: 1.5rem" ></i></router-link>
+          <router-link :to="{name:'socios_show',params:{id:socio.id}}">
+            <i class="pi pi-eye" style="font-size: 1.5rem"></i></router-link>
+          <button @click.prevent="eliminar(socio.id as number)">
+            <i class="pi pi-trash" style="font-size: 1.5rem"></i></button>
         </td>
       </tr>
     </tbody>
@@ -36,6 +39,9 @@ import { onMounted, toRefs } from 'vue'
 import useSociosStore from '../../stores/socios'
 const { socios } = toRefs(useSociosStore())
 const { getAll, destroy } = useSociosStore()
+import useUserStore from '@/stores/user'
+const userStore = useUserStore()
+
 
 onMounted(async () => {
   await getAll()

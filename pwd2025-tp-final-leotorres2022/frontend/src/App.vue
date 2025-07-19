@@ -1,19 +1,30 @@
 <template>
   <div class="app-container">
-    <nav class="navbar">
+    <header><nav class="navbar">
       <ul >
         <li><router-link to="/">HOME</router-link></li>
         <li><router-link :to="{name:'club'}">CLUB</router-link></li>
         <li><router-link :to="{name:'tienda'}">TIENDA</router-link></li>
         <li><router-link :to="{name:'galeria'}">GALERIA</router-link></li>
         <li><router-link :to="{name:'socios_list'}">SOCIOS</router-link></li>
+        <li><router-link :to="{name:'compras_list'}">COMPRAS</router-link></li>
+        <li style="display: flex; align-items: center; justify-content: center;">
+  <i class="pi pi-user" style="font-size: 1.8rem; color: white; margin-right: 8px;"></i>
+  <select v-model="modoUsuario" style="font-size: 1rem; padding: 6px; border-radius: 6px;">
+  <option value="usuario">Usuario</option>
+  <option value="admin">Admin</option>
+</select>
+</li>
+
       </ul>
     </nav>
 
     <div v-if="$route.path === '/'">
     <h1>¿Todavia no sos socio?</h1>
     <button><router-link :to="{name:'socios_create'}">ASOCIATE </router-link></button>
-    </div>
+      </div>
+    </header>
+
 
     <main class="main-content">
       <!-- Solo muestra las imágenes en Home -->
@@ -24,19 +35,67 @@
       <RouterView />
     </main>
 <footer class="footer">
-  <ul>
-    <li><a href="https://www.facebook.com/formando.futuro.ceff" target="_blank"><i class="pi pi-facebook" style="font-size: 2.5rem"></i></a></li>
-    <li><a href="https://www.instagram.com/formando.futuro.oficial?igsh=NWE2dHh3eWI0b3Jp" target="_blank"><i class="pi pi-instagram" style="font-size: 2.5rem"></i></a></li>
-    <li><a href="https://twitter.com" target="_blank"><i class="pi pi-whatsapp" style="font-size: 2.5rem"></i></a></li>
-    <li><a href="https://youtube.com" target="_blank"><i class="pi pi-map-marker" style="font-size: 2.5rem"></i></a></li>
-  </ul>
+  <div class="footer-grid">
 
+  <div class="footer-section">
+  <h4>Sobre Nosotros</h4>
+  <p>El Centro de Entrenamiento Formando Futuro es una institución deportiva dedicada a fomentar el fútbol y los valores del deporte en jóvenes y adultos desde 2018. Con una fuerte presencia en la región, impulsamos el desarrollo atlético, la inclusión y el trabajo en equipo dentro y fuera del campo.</p>
+</div>
+
+
+   <div class="footer-section">
+  <h4>Contacto</h4>
+  <p><i class="pi pi-envelope" style="margin-right: 8px;"></i> contacto@formandofuturo.edu.ar</p>
+  <p><i class="pi pi-whatsapp" style="margin-right: 8px;"></i> 2920 123456</p>
+  <p><i class="pi pi-map-marker" style="margin-right: 8px;"></i> Blvd. Ituzaingó 270, Viedma, Río Negro</p>
+   </div>
+
+
+    <div class="footer-section">
+      <h4>Accesos Rápidos</h4>
+      <ul>
+          <li><router-link to="/">HOME</router-link></li>
+        <li><router-link :to="{name:'club'}">CLUB</router-link></li>
+        <li><router-link :to="{name:'tienda'}">TIENDA</router-link></li>
+        <li><router-link :to="{name:'galeria'}">GALERIA</router-link></li>
+        <li><router-link :to="{name:'socios_list'}">SOCIOS</router-link></li>
+        <li><router-link :to="{name:'compras_list'}">COMPRAS</router-link></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h4>Seguinos</h4>
+      <ul class="social-links">
+        <li><a href="https://facebook.com/formando.futuro.ceff" target="_blank"><i class="pi pi-facebook"></i> Formando Futuro</a></li>
+        <li><a href="https://instagram.com/formando.futuro.oficial" target="_blank"><i class="pi pi-instagram"></i> Formando Futuro Oficial</a></li>
+
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 Formando Futuro CEFF — Todos los derechos reservados.</p>
+  </div>
 </footer>
+
+
   </div>
   </template>
 
 <script setup lang="ts">
 import 'primeicons/primeicons.css'
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import useUserStore from '@/stores/user'
+import { computed } from 'vue'
+const router = useRouter()
+const userStore = useUserStore()
+
+const modoUsuario = computed({
+  get: () => userStore.modo,
+  set: (val: string) => userStore.setModo(val)
+})
 
 
 </script>
@@ -85,17 +144,18 @@ import 'primeicons/primeicons.css'
   text-decoration: underline;
 }
 
-
+/* Estilos para el main */
 .main-content {
   flex: 1;
   padding: 40px;
+
 }
 
 .imagenes-container {
   display: flex;
   width: 100%;
   max-width: 1200px;
-  height: 500px; /* Más alto */
+  height: 640px; /* Más alto */
   gap: 20px;
   margin: 0 auto;
 }
@@ -138,40 +198,67 @@ button {
 button:hover {
   background: #447453;
 }
+
+/* Estilos para el footer */
 .footer {
-  background: #169d3e;
-  padding: 0 40px;
-  width: 100%;
+    background-color: #007BFF;
+  color: #fff;
+    padding: 60px 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
   box-sizing: border-box;
-  position: relative;
-  bottom: 0;
 }
 
-.footer ul {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  height: 60px;
-  align-items: center;
-  justify-content: space-between;
+.footer-section h4 {
+  color: #fff;
+  margin-bottom: 15px;
+  font-size: 20px;
 }
 
-.footer li {
-  flex: 1;
-  text-align: center;
-}
-
-.footer a {
+.footer-section p,
+.footer-section ul,
+.footer-section a {
+  font-size: 0.8rem;
+  line-height: 1.6;
   color: #fff;
   text-decoration: none;
-  font-weight: bold;
-  font-size: 18px;
 }
 
-.footer a:hover {
-  text-decoration: underline;
+.footer-section ul {
+  list-style: none;
+  padding: 0;
 }
+
+.footer-section ul li {
+  margin-bottom: 10px;
+}
+
+.social-links li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.social-links li i {
+  font-size: 1.5rem;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 14px;
+  color: #fff;
+}
+
+/* Responsive estilos */
 
 .navbar ul,
 .footer ul {
@@ -186,7 +273,7 @@ button:hover {
 
 .navbar,
 .footer {
-  padding: 0 20px; 
+  padding: 0 20px;
 }
 
 @media (max-width: 700px) {
@@ -204,5 +291,10 @@ button:hover {
     font-size: 14px;
     padding: 8px 0;
   }
+}
+select {
+  background: transparent;
+  color: rgb(40, 5, 166);
+  border: 1px solid white;
 }
 </style>

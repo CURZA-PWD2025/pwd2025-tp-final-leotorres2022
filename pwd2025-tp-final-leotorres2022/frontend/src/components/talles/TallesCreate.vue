@@ -10,7 +10,7 @@
 
   </div>
     <div class="volver" >
-          <router-link :to="{name:'configuraciones'}"><i class="pi pi-arrow-circle-left" style="font-size: 2rem"></i></router-link>
+          <router-link :to="{name:'talles_list'}"><i class="pi pi-arrow-circle-left" style="font-size: 2rem"></i></router-link>
   </div>
 </template>
 
@@ -80,7 +80,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 20vh; 
+  height: 20vh;
 }
 
 

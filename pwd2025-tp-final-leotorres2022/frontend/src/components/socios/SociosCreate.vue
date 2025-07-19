@@ -3,9 +3,9 @@
   <div>
     <form @submit.prevent="crear">
       <div >
-        <label for="" >Nombre del Socio</label>
+        <label for="" >Nombre de socio</label>
         <input type="text" name="create" v-model="socio.nombre">
-        <label for="" >Telefono</label>
+        <label for="" >telefono</label>
         <input type="text" name="create" v-model="socio.telefono">
         <label for="" >Direccion</label>
         <input type="text" name="create" v-model="socio.direccion">
@@ -96,7 +96,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 20vh; 
+  height: 20vh;
 }
 
 

@@ -1,26 +1,28 @@
 <template>
-   <h1 class="titulo">Tienda </h1>
-<router-link :to="{ name: 'configuraciones' }" class="config-link" ><i class="pi pi-cog" style="font-size: 2rem"></i></router-link>
- <div class="productos-grid">
+   <!-- Ícono de configuración -->
+  <router-link
+     v-if="userStore.modo === 'admin'"   :to="{ name: 'configuraciones' }" class="config-link">
+    <i class="pi pi-cog" style="font-size: 2rem"></i>
+  </router-link>
 
-  <div class="tienda-page">
+  <!-- Lista de productos -->
+  <div class="productos-grid">
 
+      <div
+        v-for="(producto, index) in productos"
+        :key="index"
+        class="producto"
+      >
+        <img :src="producto.imagen" :alt="producto.descripcion" />
+        <p>{{ producto.descripcion }}</p>
+        <p>${{ producto.precio.toLocaleString() }}</p>
 
-  <div class="producto">
-  <img src="@/assets/camiseta.jpg" alt="Camiseta de futbol" />
-  <p>Camiseta de fútbol</p>
- <button>comprar</button>
-</div>
-     <div class="producto">
-  <img src="@/assets/medias.jpg" alt="medias de fútbol" />
-  <p>Medias de fútbol</p>
-  <button>comprar</button>
-</div>
-     <div class="producto">
-  <img src="@/assets/short.jpg" alt="Short de fútbol" />
-  <p>Short de fútbol</p>
-  <button>comprar</button>
-</div>
+        <i
+          class="pi pi-cart-plus"
+          style="font-size: 2rem; cursor: pointer"
+          @click.stop="seleccionarProducto(producto)"
+          aria-label="Agregar al carrito"
+        ></i>
 
     </div>
   </div>
@@ -28,32 +30,88 @@
 
 <script setup lang="ts">
 import 'primeicons/primeicons.css'
+import { useRouter } from 'vue-router'
+import useComprasStore from '@/stores/compras'
+import type { Producto } from '@/interfaces/Producto'
+import useUserStore from '@/stores/user'
+const userStore = useUserStore()
+const router = useRouter()
+const comprasStore = useComprasStore()
 
+
+
+// Productos estáticos
+const productos = [
+  {
+    imagen: new URL('@/assets/camiseta.jpg', import.meta.url).href,
+    descripcion: 'Camiseta titular',
+    precio: 15000,
+    },
+  {
+    imagen: new URL('@/assets/medias.jpg', import.meta.url).href,
+    descripcion: 'Medias de fútbol',
+    precio: 6000,
+
+  },
+  {
+    imagen: new URL('@/assets/conjunto-entrenamiento.jpg', import.meta.url).href,
+    descripcion: 'Conjunto de entrenamiento',
+    precio: 30000,
+
+  },
+    {
+    imagen: new URL('@/assets/conjunto-largo.jpeg', import.meta.url).href,
+    descripcion: 'Conjunto largo',
+    precio: 60000,
+
+  },
+  {
+    imagen: new URL('@/assets/short.jpg', import.meta.url).href,
+    descripcion: 'Short de fútbol',
+    precio: 8000,
+
+  }
+
+]
+
+
+function seleccionarProducto(producto: Producto) {
+  comprasStore.seleccionarProducto(producto)
+  router.push({ name: 'compras_create' })
+}
 </script>
 
 <style scoped>
-.tienda-page {
-  padding: 40px;
-}
 
-.productos-grid {
-  display: flex;
-  gap: 40px;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-}
+
 .titulo
 {text-align: center;
 
 }
 
-.producto {
-  flex: 1 1 0;
+
+.productos-grid {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  gap: 40px;
+  overflow-x: auto;
+  padding: 1rem;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
 }
+
+.producto {
+  flex: 0 0 300px;
+  scroll-snap-align: start;
+}
+
+
+
+.producto:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.2);
+}
+
 
 .producto img {
   width: 100%;
@@ -69,6 +127,13 @@ import 'primeicons/primeicons.css'
   font-weight: bold;
   font-size: 18px;
   text-align: center;
+}
+.producto i {
+  display: block;
+  text-align: center;
+  margin-top: 12px;
+  color: #007BFF;
+  transition: color 0.3s ease;
 }
 .tienda-page h2 {
   text-align: center;
